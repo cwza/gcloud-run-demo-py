@@ -32,7 +32,7 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
       - run: gcloud auth configure-docker -q
-      - name: Push to Google Cloud Container Registry
+      - name: Deploy to Google Cloud Container Registry
         env:
             GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
         run: |
@@ -40,5 +40,5 @@ jobs:
           docker build -t us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:$TAG .
           docker image ls
           docker push us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:$TAG
-          docker tag us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:$TAG us.gcr.io/GCP_PROJECT_ID/$gcloud_run_demo_py:latest
+          docker tag us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:$TAG us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:latest
           docker push us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:latest

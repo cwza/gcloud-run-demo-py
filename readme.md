@@ -1,6 +1,12 @@
 # Google Cloud Run Demo
 >> Python Flask Server + Github Action + Google Cloud Run
 
+## Google Cloud Settings
+1. Add a service account with these IAM
+    + Cloud Run Admin
+    + Service Account user
+    + Cloud Storage Admin
+
 ## Directory Structure
 * Program
     + main.py: route
