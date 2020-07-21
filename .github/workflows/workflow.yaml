@@ -46,5 +46,4 @@ jobs:
           gcloud components install beta -q
           export TAG=`echo $GITHUB_REF | awk -F/ '{print $NF}'`
           sed -i "s/{TAG}/$TAG/g" gcloud_service.yaml
-          cat gcloud_service.yaml
           gcloud beta run services replace gcloud_service.yaml --platform managed --region us-central1
