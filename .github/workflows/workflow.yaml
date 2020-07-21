@@ -35,9 +35,14 @@ jobs:
       - name: Deploy to Google Cloud Container Registry
         env:
             GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-            TAG: echo $GITHUB_REF | awk -F/ '{print $NF}'
-        run: echo $TAG
-        #   docker build -t us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:$TAG .
-        #   docker push us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:$TAG
-        #   docker tag us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:$TAG us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:latest
-        #   docker push us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:latest
+        run: |
+          export TAG=`echo $GITHUB_REF | awk -F/ '{print $NF}'`
+          docker build -t us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:$TAG .
+          docker push us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:$TAG
+          docker tag us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:$TAG us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:latest
+          docker push us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:latest
+      - name: Deploy to Google Cloud Run
+        run: |
+          sed -i 's/{TAG}/$TAG/g' gcloud_service.yaml
+          cat gcloud_service.yaml
+          gcloud beta run services replace gcloud_service.yaml --platform managed --region us-central1

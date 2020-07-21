@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-      - image: us.gcr.io/play-263208/gcloud_run_demo_py:latest
+      - image: us.gcr.io/play-263208/gcloud_run_demo_py:{TAG}
         resources:
           limits:
             cpu: '1'
