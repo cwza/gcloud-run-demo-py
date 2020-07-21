@@ -43,6 +43,7 @@ jobs:
           docker push us.gcr.io/$GCP_PROJECT_ID/gcloud_run_demo_py:latest
       - name: Deploy to Google Cloud Run
         run: |
-          sed -i 's/{TAG}/$TAG/g' gcloud_service.yaml
+          gcloud components install beta
+          sed -i "s/{TAG}/$TAG/g" gcloud_service.yaml
           cat gcloud_service.yaml
           gcloud beta run services replace gcloud_service.yaml --platform managed --region us-central1
