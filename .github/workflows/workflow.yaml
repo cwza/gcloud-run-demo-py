@@ -34,7 +34,7 @@ jobs:
       - run: gcloud auth configure-docker
       - run: |
           export TAG=`echo $GITHUB_REF | awk -F/ '{print $NF}'`
-          docker build -t us.gcr.io/${{secrets.GCP_PROJECT_ID}}/gcloud_run_demo_py:$TAG .
+          docker build -t us.gcr.io/${{ secrets.GCP_PROJECT_ID }}/gcloud_run_demo_py:$TAG .
           docker image ls
           docker push us.gcr.io/${{secrets.GCP_PROJECT_ID}}/gcloud_run_demo_py:$TAG
           docker tag us.gcr.io/${{secrets.GCP_PROJECT_ID}}/gcloud_run_demo_py:$TAG us.gcr.io/${{secrets.GCP_PROJECT_ID}}/gcloud_run_demo_py:latest
