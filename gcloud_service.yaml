@@ -1,0 +1,21 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: gcloud-run-demo-py
+spec:
+  template:
+    spec:
+      containers:
+      - image: us.gcr.io/play-263208/gcloud_run_demo_py:latest
+        resources:
+          limits:
+            cpu: '1'
+            memory: '128M'
+        ports:
+        - containerPort: 5000
+        env:
+        - name: app_port
+          value: '5000'
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: '1' 
