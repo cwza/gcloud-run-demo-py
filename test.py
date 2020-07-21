@@ -1,6 +1,5 @@
 import unittest
 from core import concat_2_str
-from main import parse_entry_req
 
 class TestCore(unittest.TestCase):
     def test_concat_2_str(self):
