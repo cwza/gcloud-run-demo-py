@@ -37,10 +37,10 @@
     + secrets.GCP_PROJECT_ID: Your google cloud project id
     + secrets.GCP_SA_KEY: The base64 code generated from service account key from previous step
 4. After first deployment
-    + Remove default service account from this function
-    + Add allUser to this cloud function
-* Step 1, 2, 3: To grant google cloud function deployment privilege to github action.
-* Step 4: Give the least permission and let this function be public accessible
+    + Remove default service account from this service
+    + Add allUser to this cloud run
+* Step 1, 2, 3: To grant google cloud run deployment privilege to github action.
+* Step 4: Give the least permission and let this service be public accessible
 
 ## Github Action Settings
 See .github/workflows/workflow.yaml
