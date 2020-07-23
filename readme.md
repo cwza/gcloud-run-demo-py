@@ -1,5 +1,5 @@
 # Google Cloud Run Demo
->> Python Flask Server + Github Action + Google Cloud Run
+>> Example of github-action that automatically deploy flask server to google cloud run
 
 ## Main Purpose
 * Simple flask server with simple test just for demo
